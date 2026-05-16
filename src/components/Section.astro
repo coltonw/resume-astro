@@ -1,0 +1,20 @@
+---
+import type { Section } from '../content/sections';
+import IconLine from './IconLine.astro';
+import Paragraph from './Paragraph.astro';
+import MediaItem from './MediaItem.astro';
+
+interface Props { section: Section }
+const { section } = Astro.props;
+---
+
+<section id={section.id}>
+  {section.heading && (
+    <h1 class="mt-12 mb-4 text-2xl font-black text-stone-800">{section.heading}</h1>
+  )}
+  {section.preIcon?.map((p) => <Paragraph text={p} />)}
+  <IconLine iconLine={section.iconLine} />
+  {section.intro.map((p) => <Paragraph text={p} />)}
+  {section.media && <MediaItem media={section.media} />}
+  {section.outro?.map((p) => <Paragraph text={p} />)}
+</section>

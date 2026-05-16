@@ -1,0 +1,75 @@
+// Maps icon keys to their Astro components. Kept separate from
+// `iconsData.ts` so test/node runners (which can't parse `.astro`) can still
+// import the metadata.
+import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
+import { ICON_META, type IconKey } from './iconsData';
+
+import Alexa from '../components/svgs/Alexa.astro';
+import Auth0 from '../components/svgs/Auth0.astro';
+import Aws from '../components/svgs/Aws.astro';
+import Babel from '../components/svgs/Babel.astro';
+import Bootstrap from '../components/svgs/Bootstrap.astro';
+import Bower from '../components/svgs/Bower.astro';
+import Bulma from '../components/svgs/Bulma.astro';
+import CSharp from '../components/svgs/CSharp.astro';
+import CircleCI from '../components/svgs/CircleCI.astro';
+import Cloudflare from '../components/svgs/Cloudflare.astro';
+import Elixir from '../components/svgs/Elixir.astro';
+import Express from '../components/svgs/Express.astro';
+import Flow from '../components/svgs/Flow.astro';
+import Gatsby from '../components/svgs/Gatsby.astro';
+import Golang from '../components/svgs/Golang.astro';
+import Graphql from '../components/svgs/Graphql.astro';
+import Gulp from '../components/svgs/Gulp.astro';
+import Heroku from '../components/svgs/Heroku.astro';
+import Koa from '../components/svgs/Koa.astro';
+import Less from '../components/svgs/Less.astro';
+import Mocha from '../components/svgs/Mocha.astro';
+import MongoDB from '../components/svgs/MongoDB.astro';
+import NextJs from '../components/svgs/NextJs.astro';
+import Nivo from '../components/svgs/Nivo.astro';
+import NodeJs from '../components/svgs/NodeJs.astro';
+import Npm from '../components/svgs/Npm.astro';
+import Phoenix from '../components/svgs/Phoenix.astro';
+import Python from '../components/svgs/Python.astro';
+import Ramda from '../components/svgs/Ramda.astro';
+import React from '../components/svgs/React.astro';
+import Rust from '../components/svgs/Rust.astro';
+import ScalaJs from '../components/svgs/ScalaJs.astro';
+import Serverless from '../components/svgs/Serverless.astro';
+import Svelte from '../components/svgs/Svelte.astro';
+import TailwindCss from '../components/svgs/TailwindCss.astro';
+import TravisCI from '../components/svgs/TravisCI.astro';
+import Typescript from '../components/svgs/Typescript.astro';
+import Unity from '../components/svgs/Unity.astro';
+import Vercel from '../components/svgs/Vercel.astro';
+import Webpack from '../components/svgs/Webpack.astro';
+
+const SVG_COMPONENTS: Record<string, AstroComponentFactory> = {
+  Alexa, Auth0, Aws, Babel, Bootstrap, Bower, Bulma, CSharp, CircleCI,
+  Cloudflare, Elixir, Express, Flow, Gatsby, Golang, Graphql, Gulp, Heroku,
+  Koa, Less, Mocha, MongoDB, NextJs, Nivo, NodeJs, Npm, Phoenix, Python,
+  Ramda, React, Rust, ScalaJs, Serverless, Svelte, TailwindCss, TravisCI,
+  Typescript, Unity, Vercel, Webpack,
+};
+
+export interface Icon {
+  title: string;
+  href: string;
+  component: AstroComponentFactory;
+  extraClass?: string;
+}
+
+export const ICONS: Record<IconKey, Icon> = Object.fromEntries(
+  Object.entries(ICON_META).map(([key, meta]) => [
+    key,
+    {
+      title: meta.title,
+      href: meta.href,
+      component: SVG_COMPONENTS[meta.svg]!,
+      ...('extraClass' in meta ? { extraClass: meta.extraClass } : {}),
+    },
+  ]),
+) as Record<IconKey, Icon>;
+
+export type { IconKey, IconRef, TextIcon } from './iconsData';

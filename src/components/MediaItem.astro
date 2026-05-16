@@ -1,0 +1,44 @@
+---
+import type { Media } from '../content/sections';
+import EmbeddedVideo from './islands/EmbeddedVideo.svelte';
+
+interface Props { media: Media }
+const { media } = Astro.props;
+---
+
+{
+  media.kind === 'video' && (
+    <EmbeddedVideo
+      client:visible
+      webm={media.webm}
+      mp4={media.mp4}
+      width={media.width}
+      height={media.height}
+      preload={media.preload ?? false}
+    />
+  )
+}
+
+{
+  media.kind === 'image' && (
+    <picture>
+      <source srcset={media.src} />
+      <img
+        src={media.fallback}
+        class="border-2 border-stone-200 my-6"
+        alt={media.alt}
+        width={media.width}
+        height={media.height}
+      />
+    </picture>
+  )
+}
+
+{
+  media.kind === 'audio' && (
+    <Fragment>
+      <audio src={media.src} controls class="w-full" />
+      {media.caption && <div class="text-xs text-center">{media.caption}</div>}
+    </Fragment>
+  )
+}

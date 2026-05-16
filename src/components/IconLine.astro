@@ -1,0 +1,43 @@
+---
+import type { IconLine } from '../content/sections';
+import { ICONS, type TextIcon } from '../content/icons';
+
+interface Props {
+  iconLine: IconLine;
+}
+const { iconLine } = Astro.props;
+
+const ICON_BASE = 'flex-none w-8 h-8 mx-2 fill-current';
+
+function isText(ref: unknown): ref is TextIcon {
+  return typeof ref === 'object' && ref !== null && 'label' in ref;
+}
+---
+
+<div class="mt-8 mb-4 block justify-between lg:flex">
+  <h2 class="text-l font-black text-stone-800">{iconLine.title}</h2>
+  <div class="flex flex-wrap flex-row items-center justify-start h-8">
+    <div class="mr-2 text-sm text-stone-800 font-semibold">{iconLine.date}</div>
+    <div class="w-2 border-t-2 border-stone-400"></div>
+    {
+      iconLine.icons.map((ref) => {
+        if (isText(ref)) {
+          return (
+            <a title={ref.title} href={ref.href}>
+              <div class:list={[ref.labelClass ?? 'flex-none mx-2 text-stone-800']}>
+                {ref.label}
+              </div>
+            </a>
+          );
+        }
+        const icon = ICONS[ref];
+        const Component = icon.component;
+        return (
+          <a title={icon.title} href={icon.href}>
+            <Component class:list={[ICON_BASE, icon.extraClass]} />
+          </a>
+        );
+      })
+    }
+  </div>
+</div>
