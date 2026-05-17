@@ -155,9 +155,9 @@ export const SECTIONS: Section[] = [
         'svelte',
         'typescript',
         'cloudflare',
-        { title: 'Hono', href: 'https://hono.dev/', label: 'Hono', labelClass: 'flex-none mx-2 text-orange-600 font-bold text-sm' },
+        'hono',
         { title: 'Cloudflare D1', href: 'https://developers.cloudflare.com/d1/', label: 'D1', labelClass: 'flex-none mx-2 text-amber-600 font-bold' },
-        { title: 'Biome', href: 'https://biomejs.dev/', label: 'Biome', labelClass: 'flex-none mx-2 text-stone-700 text-sm font-semibold' },
+        'biome',
       ],
     },
     intro: [
@@ -254,9 +254,9 @@ export const SECTIONS: Section[] = [
     ],
   },
   {
-    id: 'boats-and-bridges-web',
+    id: 'boats-and-bridges-shipped',
     iconLine: {
-      title: 'Boats and Bridges (Web)',
+      title: 'Boats and Bridges, Take Two',
       date: '2024',
       icons: [
         'svelte',
@@ -267,7 +267,7 @@ export const SECTIONS: Section[] = [
     },
     intro: [
       'After a few years away I came back to the idea, this time as a web game where I could pick the visuals myself instead of fighting a 3D engine over them. The result is the closest thing in this museum to a "shipped" project: it is live at [boatsandbridgesgame.com](https://www.boatsandbridgesgame.com/) ([source](https://github.com/coltonw/boats-and-bridges-web)), people actually play it, and the URL still works.',
-      "The one thing I regret about it is the art. The board and card illustrations were generated with Midjourney during the brief window when image generation had just become good enough to be interesting. By the time the game actually shipped, the gamedev community had turned hard against AI art — for good reason — and the art on this game has aged with it. If I rebuilt the visuals today I would commission a real artist.",
+      "The one thing I regret about it is the art. The board and card illustrations were generated with Midjourney during the brief window when image generation had just become good enough to be interesting. By the time the game actually shipped, the gamedev community had turned hard against AI art — for good reason — and the art on this game has aged with it. If I rebuilt the visuals today I would do the art myself or partner with an artist.",
     ],
     outro: [
       'Stack is SvelteKit (with Svelte 5 runes), TypeScript, hand-written SVG for the puzzle rendering, and Vercel for hosting with their analytics built in so I can see when anybody is playing.',
@@ -280,34 +280,23 @@ export const SECTIONS: Section[] = [
       "While Boats and Bridges was on the back burner, I had been quietly designing a different game on the side — a competitive sci-fi card game called Defend the Drill, where each player crews their own drill (an unlicensed copy of a Dune spice harvester) on a hostile planet, fending off threats and racing to be the player who comes out with the most loot. This one was never going to be a video game; the target was a real tabletop game, with [Tabletop Simulator](https://www.tabletopsimulator.com/) as the playtesting environment.",
     ],
     iconLine: {
-      title: 'Defend the Drill (v1)',
-      date: '2021',
+      title: 'Defend the Drill',
+      date: '2021-2024',
       icons: [
         'nodejs',
         { title: 'Jimp', href: 'https://github.com/jimp-dev/jimp', label: 'Jimp', labelClass: 'flex-none mx-2 text-emerald-700 text-sm font-bold' },
         { title: 'Lodash', href: 'https://lodash.com/', label: 'Lo', labelClass: 'flex-none mx-2 text-black underline decoration-blue-600 decoration-2 font-bold' },
-      ],
-    },
-    intro: [
-      'The first version ([source](https://github.com/coltonw/defend-the-drill)) was a small Node script that took card definitions written as plain text and rendered them into card-shaped PNGs with Jimp, ready to drop into Tabletop Simulator as a custom deck. Crude but it did the job — I could write a new card during dinner, regenerate the deck, and have it on the table for playtesting that night.',
-    ],
-  },
-  {
-    id: 'defend-the-drill-2',
-    iconLine: {
-      title: 'Defend the Drill (v2)',
-      date: '2024',
-      icons: [
         'svelte',
         'typescript',
-        { title: 'Vite', href: 'https://vite.dev/', label: 'Vite', labelClass: 'flex-none mx-2 text-purple-600 font-bold text-sm' },
-        { title: 'Google Sheets', href: 'https://www.google.com/sheets/about/', label: 'Sheets', labelClass: 'flex-none mx-2 text-green-700 font-bold text-sm' },
-        { title: 'Sharp', href: 'https://sharp.pixelplumbing.com/', label: 'Sharp', labelClass: 'flex-none mx-2 text-stone-700 font-bold text-sm' },
-        { title: 'Playwright', href: 'https://playwright.dev/', label: 'Pw', labelClass: 'flex-none mx-2 text-emerald-600 font-bold' },
+        'vite',
+        'googleSheets',
+        'sharp',
+        'playwright',
       ],
     },
     intro: [
-      "The second pass ([source](https://github.com/coltonw/defend-the-drill2)) was a proper rebuild. Card data now lives in a Google Sheet so I can rebalance numbers between playtest rounds without recompiling anything; a build script pulls the sheet down, runs it through a Svelte component that renders each card, and uses Playwright to screenshot the rendered cards into the sheet-of-cards PNGs that Tabletop Simulator expects for a deck. Sharp does the final image processing.",
+      'The [first version](https://github.com/coltonw/defend-the-drill) was a small Node script that took card definitions written as plain text and rendered them into card-shaped PNGs with Jimp, ready to drop into Tabletop Simulator as a custom deck. Crude but it did the job — I could write a new card during dinner, regenerate the deck, and have it on the table for playtesting that night.',
+      "A few years later I did a [proper rebuild](https://github.com/coltonw/defend-the-drill2). Card data now lives in a Google Sheet so I can rebalance numbers between playtest rounds without recompiling anything; a build script pulls the sheet down, runs it through a Svelte component that renders each card, and uses Playwright to screenshot the rendered cards into the sheet-of-cards PNGs that Tabletop Simulator expects for a deck. Sharp does the final image processing.",
       "The whole thing is a board-game asset pipeline pretending to be a Svelte web app.",
     ],
   },
@@ -317,11 +306,7 @@ export const SECTIONS: Section[] = [
     iconLine: {
       title: 'Soko-Bun (Takeout Containers)',
       date: '2024-2026',
-      icons: [
-        'rust',
-        { title: 'Bevy', href: 'https://bevyengine.org/', label: 'Bevy', labelClass: 'flex-none mx-2 text-stone-800 font-black text-sm' },
-        { title: 'WebAssembly', href: 'https://webassembly.org/', label: 'wasm', labelClass: 'flex-none mx-2 text-indigo-700 font-bold text-sm' },
-      ],
+      icons: ['rust', 'bevy', 'wasm'],
     },
     intro: [
       "After Boats and Bridges shipped, I wanted to keep doing real game development but without ever opening Unity again. So I went back to first principles with a small sokoban-style puzzle game called [Soko-Bun](https://github.com/coltonw/takeout-bevy) — you push takeout containers around a grid trying not to spill them — built in [Bevy](https://bevyengine.org/), the Rust game engine.",
@@ -397,19 +382,51 @@ export const SECTIONS: Section[] = [
     ],
   },
   {
-    id: 'museum',
+    id: 'museum-cra',
     heading: 'The museum is its own exhibit',
     preIcon: [
-      "Last, but certainly not least, I want to talk about the very site you are on right now. The plan was always to implement the museum in several different UI frameworks — partly as a low-stakes way to pick up a new framework without inventing a whole new project for it, partly as an apples-to-apples comparison of how those frameworks perform on a simple two-page site.",
-      "So far that is five implementations, each of which has more or less become its own side project at this point: the original [Create React App + Tailwind](https://github.com/coltonw/resume-cra) version that establishes the React baseline; a [Deno Fresh](https://github.com/coltonw/resume-fresh) port that runs Preact islands on Deno; a [SolidJS](https://github.com/coltonw/resume-solid) port that trades the VDOM for fine-grained signals; a [SvelteKit](https://github.com/coltonw/resume-sveltekit) version on Cloudflare Pages that was my first encounter with Svelte 5 runes; and this Astro version.",
+      "Last, but certainly not least, I want to talk about the very site you are on right now. The plan was always to implement the museum in several different UI frameworks — partly as a low-stakes way to pick up a new framework without inventing a whole new project for it, partly as an apples-to-apples comparison of how those frameworks perform on a simple two-page site. Each of the older versions has more or less become its own side project at this point; they all still live at their own subdomains.",
     ],
+    iconLine: {
+      title: 'Create React App',
+      date: '2020-2022',
+      icons: ['react', 'tailwind'],
+    },
+    intro: [
+      "The original. Plain React with Tailwind, statically built, deployed to AWS S3 + CloudFront. Lives at [cra.willcolton.com](https://cra.willcolton.com/) ([source](https://github.com/coltonw/resume-cra)). It establishes the baseline — everything else gets measured against this one.",
+    ],
+  },
+  {
+    id: 'museum-fresh',
+    iconLine: {
+      title: 'Deno Fresh',
+      date: '2022-2023',
+      icons: ['tailwind'],
+    },
+    intro: [
+      "The first port — same content, run through [Deno Fresh](https://fresh.deno.dev/) with Preact islands hydrating only the bits that need to be interactive. My first taste of the islands architecture, which I would much later come back to with Astro. Lives at [fresh.willcolton.com](https://fresh.willcolton.com/) ([source](https://github.com/coltonw/resume-fresh)).",
+    ],
+  },
+  {
+    id: 'museum-sveltekit',
+    iconLine: {
+      title: 'SvelteKit',
+      date: '2022-2026',
+      icons: ['svelte', 'cloudflare', 'tailwind'],
+    },
+    intro: [
+      "The longest-lived implementation; it was the canonical museum URL for years. SvelteKit on Cloudflare Pages, Tailwind for styling. Notably it was my first encounter with Svelte 5 runes, which I liked enough that they're now also driving the islands in this Astro version. Lives at [svelte.willcolton.com](https://svelte.willcolton.com/) ([source](https://github.com/coltonw/resume-sveltekit)).",
+    ],
+  },
+  {
+    id: 'museum-astro',
     iconLine: {
       title: 'Astro',
       date: '2026',
       icons: ['astro', 'svelte', 'cloudflare', 'tailwind'],
     },
     intro: [
-      "This current implementation is [Astro](https://astro.build/) with a single Svelte 5 island for the lazy-loading video player; the rest of the site is plain static HTML, and the TL;DR page ships literally zero JavaScript. Tailwind for styling, and a typed data module for the section content so adding a new project is a content edit rather than a new file. Deploys as static files on Cloudflare Pages.",
+      "This implementation. [Astro](https://astro.build/) with a single Svelte 5 island for the lazy-loading video player; everything else is plain static HTML, and the TL;DR page ships literally zero JavaScript. Tailwind for styling, a typed data module for the section content so adding a new project is a content edit rather than a new file, and a Vitest + Playwright test suite that also runs in CI. Deploys as static files on Cloudflare Pages.",
     ],
     outro: [
       "Eventually I want to set up a real comparison across the implementations — bundle sizes, Lighthouse scores, time-to-interactive on identical content. For now the museum is a casual cross-section of where the JavaScript ecosystem has been over the last several years, with the bonus that I get to learn a new framework every couple of years without having to come up with what to put in it.",

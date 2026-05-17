@@ -7,23 +7,34 @@ interface Props {
 }
 const { iconLine } = Astro.props;
 
-const ICON_BASE = 'flex-none w-8 h-8 mx-2 fill-current';
+const ICON_BASE = 'flex-none w-7 h-7 mx-1.5 fill-current';
 
 function isText(ref: unknown): ref is TextIcon {
   return typeof ref === 'object' && ref !== null && 'label' in ref;
 }
 ---
 
-<div class="mt-8 mb-4 block justify-between lg:flex">
-  <h2 class="text-l font-black text-stone-800">{iconLine.title}</h2>
-  <div class="flex flex-wrap flex-row items-center justify-start h-8">
-    <div class="mr-2 text-sm text-stone-800 font-semibold">{iconLine.date}</div>
+<!--
+  Layout: title on the left, date + separator + icons on the right.
+  Desktop (sm and up): single horizontal row with title and icon-row
+  vertically centered.
+  Mobile: title on its own line, full-width row below it that wraps if needed.
+  The icon row has no fixed height so wrapping never overlaps the next paragraph.
+-->
+<div class="mt-8 mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-x-3 gap-y-1">
+  <h2 class="text-base sm:text-lg font-black text-stone-800 leading-tight">
+    {iconLine.title}
+  </h2>
+  <div class="flex flex-wrap flex-row items-center justify-start sm:justify-end gap-y-1 -mx-1.5">
+    <div class="mr-2 ml-1.5 text-sm text-stone-800 font-semibold whitespace-nowrap">
+      {iconLine.date}
+    </div>
     <div class="w-2 border-t-2 border-stone-400"></div>
     {
       iconLine.icons.map((ref) => {
         if (isText(ref)) {
           return (
-            <a title={ref.title} href={ref.href}>
+            <a title={ref.title} href={ref.href} class="flex items-center">
               <div class:list={[ref.labelClass ?? 'flex-none mx-2 text-stone-800']}>
                 {ref.label}
               </div>
@@ -33,7 +44,7 @@ function isText(ref: unknown): ref is TextIcon {
         const icon = ICONS[ref];
         const Component = icon.component;
         return (
-          <a title={icon.title} href={icon.href}>
+          <a title={icon.title} href={icon.href} class="flex items-center">
             <Component class:list={[ICON_BASE, icon.extraClass]} />
           </a>
         );
