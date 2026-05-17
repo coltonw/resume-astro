@@ -1,0 +1,35 @@
+---
+// No canonical PuzzleScript logo exists; this is a hand-crafted pixel-grid
+// mark in the engine's chunky-pixel aesthetic. A 4×4 grid where the cells
+// gesture at a Sokoban-style scene (player block on the left, target wall
+// on the right).
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+
+<svg
+  viewBox="0 0 16 16"
+  xmlns="http://www.w3.org/2000/svg"
+  shape-rendering="crispEdges"
+  class:list={[className]}
+>
+  <rect width="16" height="16" fill="#1c1917" />
+  <rect x="1" y="1" width="3" height="3" fill="#fbbf24" />
+  <rect x="5" y="1" width="3" height="3" fill="#1c1917" />
+  <rect x="9" y="1" width="3" height="3" fill="#1c1917" />
+  <rect x="12" y="1" width="3" height="3" fill="#dc2626" />
+  <rect x="1" y="5" width="3" height="3" fill="#1c1917" />
+  <rect x="5" y="5" width="3" height="3" fill="#16a34a" />
+  <rect x="9" y="5" width="3" height="3" fill="#1c1917" />
+  <rect x="12" y="5" width="3" height="3" fill="#1c1917" />
+  <rect x="1" y="9" width="3" height="3" fill="#1c1917" />
+  <rect x="5" y="9" width="3" height="3" fill="#1c1917" />
+  <rect x="9" y="9" width="3" height="3" fill="#16a34a" />
+  <rect x="12" y="9" width="3" height="3" fill="#1c1917" />
+  <rect x="1" y="12" width="3" height="3" fill="#dc2626" />
+  <rect x="5" y="12" width="3" height="3" fill="#1c1917" />
+  <rect x="9" y="12" width="3" height="3" fill="#1c1917" />
+  <rect x="12" y="12" width="3" height="3" fill="#fbbf24" />
+</svg>

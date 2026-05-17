@@ -152,6 +152,7 @@ export const SECTIONS: Section[] = [
       title: 'Star Judge',
       date: '2026',
       icons: [
+        'claude',
         'svelte',
         'typescript',
         'cloudflare',
@@ -284,7 +285,7 @@ export const SECTIONS: Section[] = [
       date: '2021-2024',
       icons: [
         'nodejs',
-        { title: 'Jimp', href: 'https://github.com/jimp-dev/jimp', label: 'Jimp', labelClass: 'flex-none mx-2 text-emerald-700 text-sm font-bold' },
+        'jimp',
         { title: 'Lodash', href: 'https://lodash.com/', label: 'Lo', labelClass: 'flex-none mx-2 text-black underline decoration-blue-600 decoration-2 font-bold' },
         'svelte',
         'typescript',
@@ -301,16 +302,31 @@ export const SECTIONS: Section[] = [
     ],
   },
   {
+    id: 'puzzlescript',
+    heading: 'Prototyping in PuzzleScript',
+    preIcon: [
+      "After Boats and Bridges shipped, I wanted to keep doing real game development but without ever opening Unity again. Before committing to an engine I spent a stretch making small puzzle-game prototypes in [PuzzleScript](https://www.puzzlescript.net/), the in-browser puzzle-game engine where the whole game — graphics, rules, levels — fits in a single text file.",
+    ],
+    iconLine: {
+      title: 'PuzzleScript prototypes',
+      date: '2024',
+      icons: ['puzzlescript'],
+    },
+    intro: [
+      "PuzzleScript is brilliant for this kind of thing: the iteration loop is essentially \"edit the file, hit Run, the game is in your browser.\" You can have a brand-new mechanic playable in under an hour, which means you find out very quickly whether an idea is fun or whether you've been politely fooling yourself for three weeks. (Details on the specific prototypes coming soon — I will fill this in with the games and screenshots.)",
+      "The one that survived the round of prototyping was a sokoban variant about pushing takeout containers around without spilling them. That one I decided was worth building for real in a proper engine.",
+    ],
+  },
+  {
     id: 'takeout-bevy',
-    heading: 'Sokoban, In Rust',
     iconLine: {
       title: 'Soko-Bun (Takeout Containers)',
       date: '2024-2026',
       icons: ['rust', 'bevy', 'wasm'],
     },
     intro: [
-      "After Boats and Bridges shipped, I wanted to keep doing real game development but without ever opening Unity again. So I went back to first principles with a small sokoban-style puzzle game called [Soko-Bun](https://github.com/coltonw/takeout-bevy) — you push takeout containers around a grid trying not to spill them — built in [Bevy](https://bevyengine.org/), the Rust game engine.",
-      "The point was as much to learn Bevy and the ECS pattern as it was to ship a game. Rust as a games language is interesting to me in a way that Unity hasn't been for a long time, and the build pipeline was fun to set up: native dev builds with Bevy's dynamic linking for fast iteration, release builds that target both desktop and WebAssembly in the browser.",
+      "So [Soko-Bun](https://github.com/coltonw/takeout-bevy) is the Bevy version of that prototype. [Bevy](https://bevyengine.org/) is interesting to me in a way Unity has not been for a long time — Rust as a games language, ECS as the world model, and a build pipeline that was actually fun to set up: native dev builds with dynamic linking for fast iteration, release builds that target both desktop and WebAssembly in the browser.",
+      "The point was as much to learn Bevy and ECS as it was to ship the game.",
     ],
     outro: [
       "It is on hold right now. The recent wave of AI tooling pulled my attention away, and I would rather understand what is happening with LLMs while the field is still moving fast than keep grinding on level six of a puzzle game. I will come back to it.",
@@ -366,16 +382,12 @@ export const SECTIONS: Section[] = [
     iconLine: {
       title: 'Rules RAG',
       date: '2026',
-      icons: [
-        'rust',
-        { title: 'LanceDB', href: 'https://lancedb.com/', label: 'LanceDB', labelClass: 'flex-none mx-2 text-blue-700 font-bold text-sm' },
-        { title: 'Tantivy', href: 'https://github.com/quickwit-oss/tantivy', label: 'Tantivy', labelClass: 'flex-none mx-2 text-stone-700 italic text-sm' },
-      ],
+      icons: ['rust', 'ollama', 'lancedb'],
     },
     intro: [
       "Coming off Star Judge, where I had let the AI do most of the work and walked away without really learning anything, I wanted a hands-on project to actually dig into retrieval-augmented generation.",
       "[Rules RAG](https://github.com/coltonw/rules-rag) is a board-game-rules chatbot. You ask \"how does the auction phase work in Brass\" and it answers with a quoted passage from the actual rulebook and a page citation. The dataset is intentionally small and static — my own board game collection — so there is no ingestion service or streaming pipeline to maintain; ingestion is a manual CLI step that runs the rulebook PDFs through extract → chunk → embed → store.",
-      "The whole thing is a Rust workspace with one crate per RAG concept: `ingest`, `embed`, `store`, `retrieve`, `generate`, `pipeline`, `eval`, plus the `cli` and `rag-core`. Vector storage and full-text search both live in [LanceDB](https://lancedb.com/) (the FTS side uses Tantivy under the hood). Each phase ends with re-running an eval set so that when I add a new technique I can see whether it actually helped rather than just trusting that it did.",
+      "The whole thing is a Rust workspace with one crate per RAG concept: `ingest`, `embed`, `store`, `retrieve`, `generate`, `pipeline`, `eval`, plus the `cli` and `rag-core`. Embeddings and answer generation go through [Ollama](https://ollama.com/) locally; vector storage and full-text search both live in [LanceDB](https://lancedb.com/). Each phase ends with re-running an eval set so that when I add a new technique I can see whether it actually helped rather than just trusting that it did.",
     ],
     outro: [
       "This one I am writing myself, with Claude as a collaborator I can ask questions to rather than as an implementer.",
@@ -401,7 +413,7 @@ export const SECTIONS: Section[] = [
     iconLine: {
       title: 'Deno Fresh',
       date: '2022-2023',
-      icons: ['tailwind'],
+      icons: ['fresh', 'deno', 'denoDeploy', 'tailwind'],
     },
     intro: [
       "The first port — same content, run through [Deno Fresh](https://fresh.deno.dev/) with Preact islands hydrating only the bits that need to be interactive. My first taste of the islands architecture, which I would much later come back to with Astro. Lives at [fresh.willcolton.com](https://fresh.willcolton.com/) ([source](https://github.com/coltonw/resume-fresh)).",
@@ -423,7 +435,7 @@ export const SECTIONS: Section[] = [
     iconLine: {
       title: 'Astro',
       date: '2026',
-      icons: ['astro', 'svelte', 'cloudflare', 'tailwind'],
+      icons: ['astro', 'cloudflare', 'tailwind'],
     },
     intro: [
       "This implementation. [Astro](https://astro.build/) with a single Svelte 5 island for the lazy-loading video player; everything else is plain static HTML, and the TL;DR page ships literally zero JavaScript. Tailwind for styling, a typed data module for the section content so adding a new project is a content edit rather than a new file, and a Vitest + Playwright test suite that also runs in CI. Deploys as static files on Cloudflare Pages.",
