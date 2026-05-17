@@ -1,0 +1,64 @@
+name: ci
+
+# Quality gate. Deployment is handled by Cloudflare Pages' own Git
+# integration (it builds the same `dist/` from the same commit), so this
+# workflow is purely about catching regressions before merge.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npm run check
+
+      - name: Unit tests
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      # Cache Playwright browsers across runs; key on the Playwright version
+      # so a version bump invalidates the cache.
+      - name: Get installed Playwright version
+        id: pw-version
+        run: echo "version=$(node -p "require('@playwright/test/package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Playwright browsers
+        id: pw-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: pw-${{ runner.os }}-${{ steps.pw-version.outputs.version }}
+
+      - name: Install Playwright browsers (Chromium only)
+        if: steps.pw-cache.outputs.cache-hit != 'true'
+        run: npx playwright install chromium
+
+      - name: End-to-end tests
+        run: npm run test:e2e
+
+      - name: Upload screenshots on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-screenshots
+          path: |
+            tests/screenshots
+            test-results
+          if-no-files-found: ignore

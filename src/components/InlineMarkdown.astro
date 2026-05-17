@@ -1,22 +1,30 @@
 ---
-// Renders a paragraph whose text contains the tiny `[text](url)` link syntax.
-// Anything else is rendered verbatim. Designed to be cheap (one regex, no
-// allocations beyond the split) and safe (no html injection, no nested syntax).
-const LINK = /\[([^\]]+)\]\(([^)]+)\)/g;
+// Renders a paragraph whose text contains a tiny markdown subset:
+//   [text](url)   →  styled <a>
+//   `code`        →  inline <code>
+// Anything else is rendered verbatim. One pass; no nesting; no html injection.
+const TOKEN = /\[([^\]]+)\]\(([^)]+)\)|`([^`]+)`/g;
 
 interface Props {
   text: string;
 }
 const { text } = Astro.props;
 
-type Token = { kind: 'text'; value: string } | { kind: 'link'; text: string; href: string };
+type Token =
+  | { kind: 'text'; value: string }
+  | { kind: 'link'; text: string; href: string }
+  | { kind: 'code'; value: string };
 
 function tokenize(input: string): Token[] {
   const tokens: Token[] = [];
   let last = 0;
-  for (const m of input.matchAll(LINK)) {
+  for (const m of input.matchAll(TOKEN)) {
     if (m.index! > last) tokens.push({ kind: 'text', value: input.slice(last, m.index) });
-    tokens.push({ kind: 'link', text: m[1]!, href: m[2]! });
+    if (m[1] !== undefined && m[2] !== undefined) {
+      tokens.push({ kind: 'link', text: m[1], href: m[2] });
+    } else if (m[3] !== undefined) {
+      tokens.push({ kind: 'code', value: m[3] });
+    }
     last = m.index! + m[0].length;
   }
   if (last < input.length) tokens.push({ kind: 'text', value: input.slice(last) });
@@ -27,13 +35,14 @@ const tokens = tokenize(text);
 ---
 
 {
-  tokens.map((t) =>
-    t.kind === 'text' ? (
-      <Fragment>{t.value}</Fragment>
-    ) : (
-      <a href={t.href} class="text-stone-600 font-bold hover:underline cursor-pointer">
-        {t.text}
-      </a>
-    ),
-  )
+  tokens.map((t) => {
+    if (t.kind === 'text') return <Fragment>{t.value}</Fragment>;
+    if (t.kind === 'link')
+      return (
+        <a href={t.href} class="text-stone-600 font-bold hover:underline cursor-pointer">
+          {t.text}
+        </a>
+      );
+    return <code class="font-mono text-[0.92em] bg-stone-100 text-stone-800 px-1 rounded">{t.value}</code>;
+  })
 }

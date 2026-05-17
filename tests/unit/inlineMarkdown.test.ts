@@ -1,15 +1,22 @@
 import { describe, it, expect } from 'vitest';
 
-// Mirror of the tokenizer inside InlineMarkdown.astro. Kept here so we can
-// unit-test the parsing without rendering Astro.
-const LINK = /\[([^\]]+)\]\(([^)]+)\)/g;
-type Token = { kind: 'text'; value: string } | { kind: 'link'; text: string; href: string };
+// Mirror of the tokenizer inside InlineMarkdown.astro. Kept in sync with that
+// file so we can unit-test the parsing without rendering Astro.
+const TOKEN = /\[([^\]]+)\]\(([^)]+)\)|`([^`]+)`/g;
+type Token =
+  | { kind: 'text'; value: string }
+  | { kind: 'link'; text: string; href: string }
+  | { kind: 'code'; value: string };
 function tokenize(input: string): Token[] {
   const tokens: Token[] = [];
   let last = 0;
-  for (const m of input.matchAll(LINK)) {
+  for (const m of input.matchAll(TOKEN)) {
     if (m.index! > last) tokens.push({ kind: 'text', value: input.slice(last, m.index) });
-    tokens.push({ kind: 'link', text: m[1]!, href: m[2]! });
+    if (m[1] !== undefined && m[2] !== undefined) {
+      tokens.push({ kind: 'link', text: m[1], href: m[2] });
+    } else if (m[3] !== undefined) {
+      tokens.push({ kind: 'code', value: m[3] });
+    }
     last = m.index! + m[0].length;
   }
   if (last < input.length) tokens.push({ kind: 'text', value: input.slice(last) });
@@ -36,6 +43,21 @@ describe('inline markdown tokenize', () => {
       { kind: 'text', value: ' c ' },
       { kind: 'link', text: 'd', href: 'https://d' },
       { kind: 'text', value: ' e' },
+    ]);
+  });
+
+  it('parses inline code with backticks', () => {
+    expect(tokenize('run `npm test` first')).toEqual([
+      { kind: 'text', value: 'run ' },
+      { kind: 'code', value: 'npm test' },
+      { kind: 'text', value: ' first' },
+    ]);
+  });
+
+  it('handles a mix of links and code', () => {
+    expect(tokenize('see [the `ingest` crate](https://x.example)')).toEqual([
+      { kind: 'text', value: 'see ' },
+      { kind: 'link', text: 'the `ingest` crate', href: 'https://x.example' },
     ]);
   });
 

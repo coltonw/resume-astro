@@ -146,6 +146,30 @@ export const SECTIONS: Section[] = [
     ],
   },
   {
+    id: 'star-judge',
+    heading: 'All The Voting Methods, At Once',
+    iconLine: {
+      title: 'Star Judge',
+      date: '2026',
+      icons: [
+        'svelte',
+        'typescript',
+        'cloudflare',
+        { title: 'Hono', href: 'https://hono.dev/', label: 'Hono', labelClass: 'flex-none mx-2 text-orange-600 font-bold text-sm' },
+        { title: 'Cloudflare D1', href: 'https://developers.cloudflare.com/d1/', label: 'D1', labelClass: 'flex-none mx-2 text-amber-600 font-bold' },
+        { title: 'Biome', href: 'https://biomejs.dev/', label: 'Biome', labelClass: 'flex-none mx-2 text-stone-700 text-sm font-semibold' },
+      ],
+    },
+    intro: [
+      "The voting saga didn't end with Majority Judgment. Years later I came back to it one more time, this time wanting to run every voting method I knew on the same ballot and finally watch them argue.",
+      "[Star Judge](https://github.com/coltonw/star-judge) takes one set of ratings and runs them through eight different algorithms simultaneously — STAR, Majority Judgment, Borda, instant runoff, Condorcet, a couple of \"intolerant veto\" variants that drop options with too many hard passes before tallying, and (because every group needs an escape hatch) Dictator. The fun part is the mock scenarios: Condorcet cycles, STAR runoff flips, and the classic Tennessee capital example where Memphis wins plurality but loses every single head-to-head, Nashville wins by Condorcet, and IRV somehow elects Knoxville. Deployed at [star-judge.willcolton.com](https://star-judge.willcolton.com/) (and at the underlying [star-judge.pages.dev](https://star-judge.pages.dev/)).",
+      "This one was as much an experiment in using Claude Code as it was about any of the underlying technologies. The AI did most of the implementation, which turned out to be a bad formula for a learning project — I came out the other end with a working site and not much actual knowledge of what was in it. The pieces I did learn were the ones I had to do by hand, all on the deployment side: Cloudflare Pages for the frontend, Cloudflare Workers plus D1 for the backend, and Cloudflare Access for the admin OAuth (no auth code required). Whatever lesson this project taught me is mostly about Cloudflare, and about how I want to use AI on side projects going forward — not about voting methods.",
+    ],
+    outro: [
+      "The frontend is SvelteKit 5 with Runes. The API is Hono on Cloudflare Workers, talking to a D1 SQLite database. Linting is Biome. The animated bar charts are pure CSS — no chart library.",
+    ],
+  },
+  {
     id: 'sensors-are-down',
     heading: 'Gaming Side Projects',
     iconLine: {
@@ -230,6 +254,84 @@ export const SECTIONS: Section[] = [
     ],
   },
   {
+    id: 'boats-and-bridges-web',
+    iconLine: {
+      title: 'Boats and Bridges (Web)',
+      date: '2024',
+      icons: [
+        'svelte',
+        'typescript',
+        'vercel',
+        { title: 'Midjourney', href: 'https://www.midjourney.com/', label: 'Midjourney', labelClass: 'flex-none mx-2 text-stone-700 text-sm font-semibold italic' },
+      ],
+    },
+    intro: [
+      'After a few years away I came back to the idea, this time as a web game where I could pick the visuals myself instead of fighting a 3D engine over them. The result is the closest thing in this museum to a "shipped" project: it is live at [boatsandbridgesgame.com](https://www.boatsandbridgesgame.com/) ([source](https://github.com/coltonw/boats-and-bridges-web)), people actually play it, and the URL still works.',
+      "The one thing I regret about it is the art. The board and card illustrations were generated with Midjourney during the brief window when image generation had just become good enough to be interesting. By the time the game actually shipped, the gamedev community had turned hard against AI art — for good reason — and the art on this game has aged with it. If I rebuilt the visuals today I would commission a real artist.",
+    ],
+    outro: [
+      'Stack is SvelteKit (with Svelte 5 runes), TypeScript, hand-written SVG for the puzzle rendering, and Vercel for hosting with their analytics built in so I can see when anybody is playing.',
+    ],
+  },
+  {
+    id: 'defend-the-drill',
+    heading: 'Designing My Own Board Game',
+    preIcon: [
+      "While Boats and Bridges was on the back burner, I had been quietly designing a different game on the side — a competitive sci-fi card game called Defend the Drill, where each player crews their own drill (an unlicensed copy of a Dune spice harvester) on a hostile planet, fending off threats and racing to be the player who comes out with the most loot. This one was never going to be a video game; the target was a real tabletop game, with [Tabletop Simulator](https://www.tabletopsimulator.com/) as the playtesting environment.",
+    ],
+    iconLine: {
+      title: 'Defend the Drill (v1)',
+      date: '2021',
+      icons: [
+        'nodejs',
+        { title: 'Jimp', href: 'https://github.com/jimp-dev/jimp', label: 'Jimp', labelClass: 'flex-none mx-2 text-emerald-700 text-sm font-bold' },
+        { title: 'Lodash', href: 'https://lodash.com/', label: 'Lo', labelClass: 'flex-none mx-2 text-black underline decoration-blue-600 decoration-2 font-bold' },
+      ],
+    },
+    intro: [
+      'The first version ([source](https://github.com/coltonw/defend-the-drill)) was a small Node script that took card definitions written as plain text and rendered them into card-shaped PNGs with Jimp, ready to drop into Tabletop Simulator as a custom deck. Crude but it did the job — I could write a new card during dinner, regenerate the deck, and have it on the table for playtesting that night.',
+    ],
+  },
+  {
+    id: 'defend-the-drill-2',
+    iconLine: {
+      title: 'Defend the Drill (v2)',
+      date: '2024',
+      icons: [
+        'svelte',
+        'typescript',
+        { title: 'Vite', href: 'https://vite.dev/', label: 'Vite', labelClass: 'flex-none mx-2 text-purple-600 font-bold text-sm' },
+        { title: 'Google Sheets', href: 'https://www.google.com/sheets/about/', label: 'Sheets', labelClass: 'flex-none mx-2 text-green-700 font-bold text-sm' },
+        { title: 'Sharp', href: 'https://sharp.pixelplumbing.com/', label: 'Sharp', labelClass: 'flex-none mx-2 text-stone-700 font-bold text-sm' },
+        { title: 'Playwright', href: 'https://playwright.dev/', label: 'Pw', labelClass: 'flex-none mx-2 text-emerald-600 font-bold' },
+      ],
+    },
+    intro: [
+      "The second pass ([source](https://github.com/coltonw/defend-the-drill2)) was a proper rebuild. Card data now lives in a Google Sheet so I can rebalance numbers between playtest rounds without recompiling anything; a build script pulls the sheet down, runs it through a Svelte component that renders each card, and uses Playwright to screenshot the rendered cards into the sheet-of-cards PNGs that Tabletop Simulator expects for a deck. Sharp does the final image processing.",
+      "The whole thing is a board-game asset pipeline pretending to be a Svelte web app.",
+    ],
+  },
+  {
+    id: 'takeout-bevy',
+    heading: 'Sokoban, In Rust',
+    iconLine: {
+      title: 'Soko-Bun (Takeout Containers)',
+      date: '2024-2026',
+      icons: [
+        'rust',
+        { title: 'Bevy', href: 'https://bevyengine.org/', label: 'Bevy', labelClass: 'flex-none mx-2 text-stone-800 font-black text-sm' },
+        { title: 'WebAssembly', href: 'https://webassembly.org/', label: 'wasm', labelClass: 'flex-none mx-2 text-indigo-700 font-bold text-sm' },
+      ],
+    },
+    intro: [
+      "After Boats and Bridges shipped, I wanted to keep doing real game development but without ever opening Unity again. So I went back to first principles with a small sokoban-style puzzle game called [Soko-Bun](https://github.com/coltonw/takeout-bevy) — you push takeout containers around a grid trying not to spill them — built in [Bevy](https://bevyengine.org/), the Rust game engine.",
+      "The point was as much to learn Bevy and the ECS pattern as it was to ship a game. Rust as a games language is interesting to me in a way that Unity hasn't been for a long time, and the build pipeline was fun to set up: native dev builds with Bevy's dynamic linking for fast iteration, release builds that target both desktop and WebAssembly in the browser.",
+    ],
+    outro: [
+      "It is on hold right now. The recent wave of AI tooling pulled my attention away, and I would rather understand what is happening with LLMs while the field is still moving fast than keep grinding on level six of a puzzle game. I will come back to it.",
+    ],
+  },
+  {
     id: 'puzzlesync',
     heading: 'Fun with Family',
     iconLine: {
@@ -274,16 +376,43 @@ export const SECTIONS: Section[] = [
     ],
   },
   {
+    id: 'rules-rag',
+    heading: 'Learning Modern AI From Scratch',
+    iconLine: {
+      title: 'Rules RAG',
+      date: '2026',
+      icons: [
+        'rust',
+        { title: 'LanceDB', href: 'https://lancedb.com/', label: 'LanceDB', labelClass: 'flex-none mx-2 text-blue-700 font-bold text-sm' },
+        { title: 'Tantivy', href: 'https://github.com/quickwit-oss/tantivy', label: 'Tantivy', labelClass: 'flex-none mx-2 text-stone-700 italic text-sm' },
+      ],
+    },
+    intro: [
+      "Coming off Star Judge, where I had let the AI do most of the work and walked away without really learning anything, I wanted a hands-on project to actually dig into retrieval-augmented generation.",
+      "[Rules RAG](https://github.com/coltonw/rules-rag) is a board-game-rules chatbot. You ask \"how does the auction phase work in Brass\" and it answers with a quoted passage from the actual rulebook and a page citation. The dataset is intentionally small and static — my own board game collection — so there is no ingestion service or streaming pipeline to maintain; ingestion is a manual CLI step that runs the rulebook PDFs through extract → chunk → embed → store.",
+      "The whole thing is a Rust workspace with one crate per RAG concept: `ingest`, `embed`, `store`, `retrieve`, `generate`, `pipeline`, `eval`, plus the `cli` and `rag-core`. Vector storage and full-text search both live in [LanceDB](https://lancedb.com/) (the FTS side uses Tantivy under the hood). Each phase ends with re-running an eval set so that when I add a new technique I can see whether it actually helped rather than just trusting that it did.",
+    ],
+    outro: [
+      "This one I am writing myself, with Claude as a collaborator I can ask questions to rather than as an implementer.",
+    ],
+  },
+  {
     id: 'museum',
     heading: 'The museum is its own exhibit',
+    preIcon: [
+      "Last, but certainly not least, I want to talk about the very site you are on right now. The plan was always to implement the museum in several different UI frameworks — partly as a low-stakes way to pick up a new framework without inventing a whole new project for it, partly as an apples-to-apples comparison of how those frameworks perform on a simple two-page site.",
+      "So far that is five implementations, each of which has more or less become its own side project at this point: the original [Create React App + Tailwind](https://github.com/coltonw/resume-cra) version that establishes the React baseline; a [Deno Fresh](https://github.com/coltonw/resume-fresh) port that runs Preact islands on Deno; a [SolidJS](https://github.com/coltonw/resume-solid) port that trades the VDOM for fine-grained signals; a [SvelteKit](https://github.com/coltonw/resume-sveltekit) version on Cloudflare Pages that was my first encounter with Svelte 5 runes; and this Astro version.",
+    ],
     iconLine: {
       title: 'Astro',
       date: '2026',
       icons: ['astro', 'svelte', 'cloudflare', 'tailwind'],
     },
     intro: [
-      'Last, but certainly not least, I want to discuss the very site you are on right now. The intention is to have several implementations in different UI frameworks both as a quick way to learn a bunch of technologies and as a demonstration of their performance against each other on a simple two page website.',
-      'This museum implementation is built using Astro with a Svelte 5 island for the lazy-loading video player — the rest of the page ships zero JavaScript. For styling it uses TailwindCSS. It is intended to be deployed as static files on Cloudflare Pages.',
+      "This current implementation is [Astro](https://astro.build/) with a single Svelte 5 island for the lazy-loading video player; the rest of the site is plain static HTML, and the TL;DR page ships literally zero JavaScript. Tailwind for styling, and a typed data module for the section content so adding a new project is a content edit rather than a new file. Deploys as static files on Cloudflare Pages.",
+    ],
+    outro: [
+      "Eventually I want to set up a real comparison across the implementations — bundle sizes, Lighthouse scores, time-to-interactive on identical content. For now the museum is a casual cross-section of where the JavaScript ecosystem has been over the last several years, with the bonus that I get to learn a new framework every couple of years without having to come up with what to put in it.",
     ],
   },
 ];
