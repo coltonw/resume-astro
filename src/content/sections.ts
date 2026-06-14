@@ -162,12 +162,12 @@ export const SECTIONS: Section[] = [
       ],
     },
     intro: [
-      "The voting saga didn't end with Majority Judgment. Years later I came back to it one more time, this time wanting to run every voting method I knew on the same ballot and finally watch them argue.",
-      "[Star Judge](https://github.com/coltonw/star-judge) takes one set of ratings and runs them through eight different algorithms simultaneously — STAR, Majority Judgment, Borda, instant runoff, Condorcet, a couple of \"intolerant veto\" variants that drop options with too many hard passes before tallying, and (because every group needs an escape hatch) Dictator. The fun part is the mock scenarios: Condorcet cycles, STAR runoff flips, and the classic Tennessee capital example where Memphis wins plurality but loses every single head-to-head, Nashville wins by Condorcet, and IRV somehow elects Knoxville. Deployed at [star-judge.willcolton.com](https://star-judge.willcolton.com/) (and at the underlying [star-judge.pages.dev](https://star-judge.pages.dev/)).",
-      "This one was as much an experiment in using Claude Code as it was about any of the underlying technologies. The AI did most of the implementation, which turned out to be a bad formula for a learning project — I came out the other end with a working site and not much actual knowledge of what was in it. The pieces I did learn were the ones I had to do by hand, all on the deployment side: Cloudflare Pages for the frontend, Cloudflare Workers plus D1 for the backend, and Cloudflare Access for the admin OAuth (no auth code required). Whatever lesson this project taught me is mostly about Cloudflare, and about how I want to use AI on side projects going forward — not about voting methods.",
+      "With kids and people moving away, I haven't had as many big board game nights as I used to. Plus everyone just defers to me for board game choices anyways. But after years of not thinking about it, I came back to it again curious about advancements in voting methods and curious to get my feet wet with my first foray into vibe coding.",
+      "[Star Judge](https://github.com/coltonw/star-judge) takes one set of ratings and runs them through eight different algorithms simultaneously — STAR and Majority Judgment (the two eponymous voting methods), Borda, instant runoff, Condorcet, a couple of \"intolerant veto\" variants that drop options with too many hard passes before tallying, and, last but not least, the Dictator. The fun part is the mock scenarios: Condorcet cycles, STAR runoff flips, and the classic Tennessee capital example where Memphis wins plurality but loses every single head-to-head, Nashville wins by Condorcet, and IRV somehow elects Knoxville. Deployed at [star-judge.willcolton.com](https://star-judge.willcolton.com/) (and at the underlying [star-judge.pages.dev](https://star-judge.pages.dev/)).",
+      "The main thing I wanted to learn was Claude Code. I had already spent a lot of time with Github Copilot at work, but the buzz at the time was that Claude Code was the best-in-class AI coding tool and I wanted to try it for myself.",
     ],
     outro: [
-      "The frontend is SvelteKit 5 with Runes. The API is Hono on Cloudflare Workers, talking to a D1 SQLite database. Linting is Biome. The animated bar charts are pure CSS — no chart library.",
+      "The frontend is SvelteKit 5 with Runes. The API is Hono on Cloudflare Workers, talking to a D1 SQLite database. Linting is Biome. The animated bar charts are pure CSS — no chart library. I learned nothing about Hono or Runes, because the AI just did all that for me. In the end I found the project deeply unsatisfying. Since the point of side-projects is to mainly to learn, I plan to rely much less on vibe coding in the future.",
     ],
   },
   {
@@ -267,11 +267,11 @@ export const SECTIONS: Section[] = [
       ],
     },
     intro: [
-      'After a few years away I came back to the idea, this time as a web game where I could pick the visuals myself instead of fighting a 3D engine over them. The result is the closest thing in this museum to a "shipped" project: it is live at [boatsandbridgesgame.com](https://www.boatsandbridgesgame.com/) ([source](https://github.com/coltonw/boats-and-bridges-web)), people actually play it, and the URL still works.',
+      'After a few years away I came back to the idea, this time as a web game. I figure I can more easily actually finish if it is based on technologies I already know and love. The result is the closest thing in this museum to a "shipped" project: it is live at [boatsandbridgesgame.com](https://www.boatsandbridgesgame.com/) ([source](https://github.com/coltonw/boats-and-bridges-web)), people actually play it, and the URL still works.',
       "The one thing I regret about it is the art. The board and card illustrations were generated with Midjourney during the brief window when image generation had just become good enough to be interesting. By the time the game actually shipped, the gamedev community had turned hard against AI art — for good reason — and the art on this game has aged with it. If I rebuilt the visuals today I would do the art myself or partner with an artist.",
     ],
     outro: [
-      'Stack is SvelteKit (with Svelte 5 runes), TypeScript, hand-written SVG for the puzzle rendering, and Vercel for hosting with their analytics built in so I can see when anybody is playing.',
+      'Stack is SvelteKit (with Svelte 5 runes), TypeScript, hand-written SVG for the puzzle rendering, and Vercel for hosting with their analytics built in so I can see when anybody is playing. Out of all the frontend frameworks I have used, SvelteKit has been one of my favorites. Definitely glad I learned it and I plan to use it more for future projects (even if I could never get work off of React).',
     ],
   },
   {
@@ -363,7 +363,7 @@ export const SECTIONS: Section[] = [
       icons: ['nextjs', 'vercel', 'bulma', 'aws'],
     },
     intro: [
-      'The most recent family get-together I decided to make a digital schedule. I added some functionality where attendees could pick which games they were going to join ([source](https://github.com/coltonw/danycon-schedule/); [site](https://danycon-schedule.vercel.app/) - use username Will and give it a few minutes for vercel to start the server before refreshing and logging in).',
+      'Before the 2022 family get-together I decided to make a digital schedule. I added some functionality where attendees could pick which games they were going to join ([source](https://github.com/coltonw/danycon-schedule/); [site](https://danycon-schedule.vercel.app/) - use username Will and give it a few minutes for vercel to start the server before refreshing and logging in).',
     ],
     media: {
       kind: 'video',
@@ -373,7 +373,7 @@ export const SECTIONS: Section[] = [
       height: 868,
     },
     outro: [
-      'I had the pleasure of building this site using Next.js and deploying using Vercel. It made my life really easy and I definitely want to work with Next.js more in the future. For styling I used Bulma and as a database I used AWS DynamoDB.',
+      'I had the pleasure of building this site using Next.js and deploying using Vercel. It made my life really easy and I ended up switching our frontend to Next.js at work off of this experience. For styling I used Bulma and as a database I used AWS DynamoDB. I continue to update the schedule every year for the family get together and I continue to be happy with it.',
     ],
   },
   {
@@ -386,8 +386,8 @@ export const SECTIONS: Section[] = [
     },
     intro: [
       "Coming off Star Judge, where I had let the AI do most of the work and walked away without really learning anything, I wanted a hands-on project to actually dig into retrieval-augmented generation.",
-      "[Rules RAG](https://github.com/coltonw/rules-rag) is a board-game-rules chatbot. You ask \"how does the auction phase work in Brass\" and it answers with a quoted passage from the actual rulebook and a page citation. The dataset is intentionally small and static — my own board game collection — so there is no ingestion service or streaming pipeline to maintain; ingestion is a manual CLI step that runs the rulebook PDFs through extract → chunk → embed → store.",
-      "The whole thing is a Rust workspace with one crate per RAG concept: `ingest`, `embed`, `store`, `retrieve`, `generate`, `pipeline`, `eval`, plus the `cli` and `rag-core`. Embeddings and answer generation go through [Ollama](https://ollama.com/) locally; vector storage and full-text search both live in [LanceDB](https://lancedb.com/). Each phase ends with re-running an eval set so that when I add a new technique I can see whether it actually helped rather than just trusting that it did.",
+      "[Rules RAG](https://github.com/coltonw/rules-rag) is a board-game-rules chatbot. You ask \"how does the auction phase work in Brass\" and it answers with a quoted passage from the actual rulebook and a page citation. But, even more than most side projects, I care less about the project itself and more about the underlying technologies I am trying to learn.",
+      "The whole thing is a Rust workspace and I am trying to make it as idiomatically Rust as possible. I am using clippy::pedantic to make sure I do as much the \"rusty\" way as possible. Embeddings and answer generation go through [Ollama](https://ollama.com/) locally; vector storage and full-text search both live in [LanceDB](https://lancedb.com/). I built an eval set so that when I add a new technique I can validate the technique and get that satisfying \"number go up\" reward.",
     ],
     outro: [
       "This one I am writing myself, with Claude as a collaborator I can ask questions to rather than as an implementer.",

@@ -1,0 +1,5 @@
+publicHoistPattern:
+  - '*playwright*'
+allowBuilds:
+  esbuild: true
+  sharp: true

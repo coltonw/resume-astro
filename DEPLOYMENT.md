@@ -74,7 +74,7 @@ Build settings:
 | Field | Value |
 |---|---|
 | Framework preset | **Astro** |
-| Build command | `npm run build` |
+| Build command | `pnpm run build` |
 | Build output directory | `dist` |
 | Root directory | (empty / project root) |
 | Production branch | `main` |
