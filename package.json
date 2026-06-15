@@ -13,9 +13,6 @@
     "test:all": "pnpm run check && pnpm run test && pnpm run test:e2e"
   },
   "packageManager": "pnpm@11.6.0",
-  "pnpm": {
-    "onlyBuiltDependencies": ["sharp", "workerd"]
-  },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/svelte": "^8.1.1",
