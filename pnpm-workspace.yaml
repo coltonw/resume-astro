@@ -1,5 +1,5 @@
 publicHoistPattern:
-  - '*playwright*'
+  - "*playwright*"
 allowBuilds:
   esbuild: true
   sharp: true

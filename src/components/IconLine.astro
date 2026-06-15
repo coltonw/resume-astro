@@ -1,16 +1,16 @@
 ---
-import type { IconLine } from '../content/sections';
-import { ICONS, type TextIcon } from '../content/icons';
+import type { IconLine } from "../content/sections";
+import { ICONS, type TextIcon } from "../content/icons";
 
 interface Props {
   iconLine: IconLine;
 }
 const { iconLine } = Astro.props;
 
-const ICON_BASE = 'flex-none w-7 h-7 mx-1.5 fill-current';
+const ICON_BASE = "flex-none w-7 h-7 mx-1.5 fill-current";
 
 function isText(ref: unknown): ref is TextIcon {
-  return typeof ref === 'object' && ref !== null && 'label' in ref;
+  return typeof ref === "object" && ref !== null && "label" in ref;
 }
 ---
 
@@ -21,12 +21,18 @@ function isText(ref: unknown): ref is TextIcon {
   Mobile: title on its own line, full-width row below it that wraps if needed.
   The icon row has no fixed height so wrapping never overlaps the next paragraph.
 -->
-<div class="mt-8 mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-x-3 gap-y-1">
-  <h2 class="text-base sm:text-lg font-black text-stone-800 leading-tight">
+<div
+  class="mt-8 mb-4 flex flex-col gap-x-3 gap-y-1 sm:flex-row sm:items-center sm:justify-between"
+>
+  <h2 class="text-base leading-tight font-black text-stone-800 sm:text-lg">
     {iconLine.title}
   </h2>
-  <div class="flex flex-wrap flex-row items-center justify-start sm:justify-end gap-y-1 -mx-1.5">
-    <div class="mr-2 ml-1.5 text-sm text-stone-800 font-semibold whitespace-nowrap">
+  <div
+    class="-mx-1.5 flex flex-row flex-wrap items-center justify-start gap-y-1 sm:justify-end"
+  >
+    <div
+      class="mr-2 ml-1.5 text-sm font-semibold whitespace-nowrap text-stone-800"
+    >
       {iconLine.date}
     </div>
     <div class="w-2 border-t-2 border-stone-400"></div>
@@ -35,7 +41,9 @@ function isText(ref: unknown): ref is TextIcon {
         if (isText(ref)) {
           return (
             <a title={ref.title} href={ref.href} class="flex items-center">
-              <div class:list={[ref.labelClass ?? 'flex-none mx-2 text-stone-800']}>
+              <div
+                class:list={[ref.labelClass ?? "mx-2 flex-none text-stone-800"]}
+              >
                 {ref.label}
               </div>
             </a>

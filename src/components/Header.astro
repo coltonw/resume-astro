@@ -1,21 +1,23 @@
 ---
-import Wkc from './svgs/Wkc.astro';
-import Github from './svgs/Github.astro';
+import Wkc from "./svgs/Wkc.astro";
+import Github from "./svgs/Github.astro";
 ---
 
 <header
-  class="mb-10 flex items-center justify-between px-4 py-3 text-base border-b border-stone-100"
+  class="mb-10 flex items-center justify-between border-b border-stone-100 px-4 py-3 text-base"
 >
   <a href="/" class="flex items-center">
-    <Wkc class="w-8 h-8 inline align-middle" />
-    <span class="align-middle hidden sm:inline pl-2 text-l font-black text-stone-700">
+    <Wkc class="inline h-8 w-8 align-middle" />
+    <span
+      class="text-l hidden pl-2 align-middle font-black text-stone-700 sm:inline"
+    >
       Will Colton's Side Project Museum
     </span>
   </a>
   <nav class="flex p-0">
     <a
       href="https://github.com/coltonw"
-      class="block px-2 py-1 text-stone-600 rounded hover:text-stone-700"
+      class="block rounded px-2 py-1 text-stone-600 hover:text-stone-700"
       aria-label="Github"
     >
       <Github class="h-6 w-6" />

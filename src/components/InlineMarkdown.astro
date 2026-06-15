@@ -11,23 +11,25 @@ interface Props {
 const { text } = Astro.props;
 
 type Token =
-  | { kind: 'text'; value: string }
-  | { kind: 'link'; text: string; href: string }
-  | { kind: 'code'; value: string };
+  | { kind: "text"; value: string }
+  | { kind: "link"; text: string; href: string }
+  | { kind: "code"; value: string };
 
 function tokenize(input: string): Token[] {
   const tokens: Token[] = [];
   let last = 0;
   for (const m of input.matchAll(TOKEN)) {
-    if (m.index! > last) tokens.push({ kind: 'text', value: input.slice(last, m.index) });
+    if (m.index! > last)
+      tokens.push({ kind: "text", value: input.slice(last, m.index) });
     if (m[1] !== undefined && m[2] !== undefined) {
-      tokens.push({ kind: 'link', text: m[1], href: m[2] });
+      tokens.push({ kind: "link", text: m[1], href: m[2] });
     } else if (m[3] !== undefined) {
-      tokens.push({ kind: 'code', value: m[3] });
+      tokens.push({ kind: "code", value: m[3] });
     }
     last = m.index! + m[0].length;
   }
-  if (last < input.length) tokens.push({ kind: 'text', value: input.slice(last) });
+  if (last < input.length)
+    tokens.push({ kind: "text", value: input.slice(last) });
   return tokens;
 }
 
@@ -36,13 +38,20 @@ const tokens = tokenize(text);
 
 {
   tokens.map((t) => {
-    if (t.kind === 'text') return <Fragment>{t.value}</Fragment>;
-    if (t.kind === 'link')
+    if (t.kind === "text") return <Fragment>{t.value}</Fragment>;
+    if (t.kind === "link")
       return (
-        <a href={t.href} class="text-stone-600 font-bold hover:underline cursor-pointer">
+        <a
+          href={t.href}
+          class="cursor-pointer font-bold text-stone-600 hover:underline"
+        >
           {t.text}
         </a>
       );
-    return <code class="font-mono text-[0.92em] bg-stone-100 text-stone-800 px-1 rounded">{t.value}</code>;
+    return (
+      <code class="rounded bg-stone-100 px-1 font-mono text-[0.92em] text-stone-800">
+        {t.value}
+      </code>
+    );
   })
 }

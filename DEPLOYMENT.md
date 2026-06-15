@@ -21,12 +21,12 @@ that are linked from the new museum section.
 
 ## Decisions
 
-| Decision | Choice | Reasoning |
-|---|---|---|
-| Hosting platform | **Cloudflare Pages** | Site is pure static (`output: 'static'` in `astro.config.mjs`); `public/_headers` already targets CF Pages; you're already in the Cloudflare ecosystem (Star Judge uses Workers + D1 + Access); CF Pages has native GitHub auto-deploy so no Actions are required for shipping. |
-| Canonical URL | **`astro.willcolton.com`** (and later `willcolton.com`) | Matches the existing naming pattern (cra., fresh., solid., svelte.) and lets us deploy without touching the apex DNS at all. Promoting to the apex is a follow-up. |
-| CI | **GitHub Actions, quality gate only** | Cloudflare Pages handles the deploy. The Actions workflow just runs check + unit + e2e + build on push/PR so bad code can't get merged. See `.github/workflows/ci.yml`. |
-| Old subdomains | **Leave them running** | Each becomes a museum exhibit in its own right, accessible by its subdomain and linked from the new museum section. No takedowns. |
+| Decision         | Choice                                                  | Reasoning                                                                                                                                                                                                                                                                       |
+| ---------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Hosting platform | **Cloudflare Pages**                                    | Site is pure static (`output: 'static'` in `astro.config.mjs`); `public/_headers` already targets CF Pages; you're already in the Cloudflare ecosystem (Star Judge uses Workers + D1 + Access); CF Pages has native GitHub auto-deploy so no Actions are required for shipping. |
+| Canonical URL    | **`astro.willcolton.com`** (and later `willcolton.com`) | Matches the existing naming pattern (cra., fresh., solid., svelte.) and lets us deploy without touching the apex DNS at all. Promoting to the apex is a follow-up.                                                                                                              |
+| CI               | **GitHub Actions, quality gate only**                   | Cloudflare Pages handles the deploy. The Actions workflow just runs check + unit + e2e + build on push/PR so bad code can't get merged. See `.github/workflows/ci.yml`.                                                                                                         |
+| Old subdomains   | **Leave them running**                                  | Each becomes a museum exhibit in its own right, accessible by its subdomain and linked from the new museum section. No takedowns.                                                                                                                                               |
 
 ## What's been done in-repo
 
@@ -71,14 +71,14 @@ Cloudflare dashboard → **Workers & Pages** → **Create** → **Pages** →
 
 Build settings:
 
-| Field | Value |
-|---|---|
-| Framework preset | **Astro** |
-| Build command | `pnpm run build` |
-| Build output directory | `dist` |
-| Root directory | (empty / project root) |
-| Production branch | `main` |
-| Node version | `22` (set via env var `NODE_VERSION=22` if CF defaults to something older) |
+| Field                  | Value                                                                      |
+| ---------------------- | -------------------------------------------------------------------------- |
+| Framework preset       | **Astro**                                                                  |
+| Build command          | `pnpm run build`                                                           |
+| Build output directory | `dist`                                                                     |
+| Root directory         | (empty / project root)                                                     |
+| Production branch      | `main`                                                                     |
+| Node version           | `22` (set via env var `NODE_VERSION=22` if CF defaults to something older) |
 
 CF Pages will do its first build immediately and give you a URL like
 `resume-astro-abc.pages.dev`. Verify the site loads there before going on.
@@ -97,13 +97,13 @@ Cloudflare will tell you exactly what DNS record to add (it will be a
 AWS console → **Route 53** → Hosted zone for `willcolton.com` → **Create
 record**.
 
-| Field | Value |
-|---|---|
-| Record name | `astro` |
-| Record type | `CNAME` |
-| Value | the CF target from step 3 (e.g. `resume-astro-abc.pages.dev`) |
-| TTL | 300 (5 minutes; fine for a personal site) |
-| Routing policy | Simple |
+| Field          | Value                                                         |
+| -------------- | ------------------------------------------------------------- |
+| Record name    | `astro`                                                       |
+| Record type    | `CNAME`                                                       |
+| Value          | the CF target from step 3 (e.g. `resume-astro-abc.pages.dev`) |
+| TTL            | 300 (5 minutes; fine for a personal site)                     |
+| Routing policy | Simple                                                        |
 
 After DNS propagates (usually under a minute), the CF Pages custom-domain
 page will switch to "Active" and HTTPS will be auto-provisioned. Site is now

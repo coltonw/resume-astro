@@ -1,18 +1,25 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Paragraph from '../components/Paragraph.astro';
-import Section from '../components/Section.astro';
-import { SECTIONS } from '../content/sections';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Paragraph from "../components/Paragraph.astro";
+import Section from "../components/Section.astro";
+import { SECTIONS } from "../content/sections";
 ---
 
 <BaseLayout title="Will Colton's Side Project Museum">
-  <Paragraph text="Welcome to my space. Let me tell you about some of the stuff I have worked on." />
-  <Paragraph text="As a learning exercise, I have implemented this site in a few different UI frameworks. This version is the [Astro](https://astro.build/) implementation." />
+  <Paragraph
+    text="Welcome to my space. Let me tell you about some of the stuff I have worked on."
+  />
+  <Paragraph
+    text="As a learning exercise, I have implemented this site in a few different UI frameworks. This version is the [Astro](https://astro.build/) implementation."
+  />
   <div>
-    <a href="/tldr" class="text-stone-600 font-bold hover:underline cursor-pointer">TL;DR</a>
+    <a
+      href="/tldr"
+      class="cursor-pointer font-bold text-stone-600 hover:underline">TL;DR</a
+    >
   </div>
   {SECTIONS.map((s) => <Section section={s} />)}
-  <div class="mt-20 mb-12 text-xl text-center text-stone-800">
+  <div class="mt-20 mb-12 text-center text-xl text-stone-800">
     Thanks for stopping by!
   </div>
 </BaseLayout>

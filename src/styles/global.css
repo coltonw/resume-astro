@@ -1,6 +1,6 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
-@source '../**/*.{html,astro,svelte,ts,tsx,js,jsx}';
+@source "../**/*.{html,astro,svelte,ts,tsx,js,jsx}";
 
 html {
   scrollbar-gutter: stable;

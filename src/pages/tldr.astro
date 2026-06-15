@@ -1,12 +1,16 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Paragraph from '../components/Paragraph.astro';
-import IconLine from '../components/IconLine.astro';
-import { SECTIONS } from '../content/sections';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Paragraph from "../components/Paragraph.astro";
+import IconLine from "../components/IconLine.astro";
+import { SECTIONS } from "../content/sections";
 ---
 
 <BaseLayout title="Will Colton's Side Project Museum — TL;DR">
-  <Paragraph text="Welcome to my space. Let me tell you about some of the stuff I have worked on." />
-  <Paragraph text="As a learning exercise, I have implemented this site in a few different UI frameworks. This version is the [Astro](https://astro.build/) implementation." />
+  <Paragraph
+    text="Welcome to my space. Let me tell you about some of the stuff I have worked on."
+  />
+  <Paragraph
+    text="As a learning exercise, I have implemented this site in a few different UI frameworks. This version is the [Astro](https://astro.build/) implementation."
+  />
   {SECTIONS.map((s) => <IconLine iconLine={s.iconLine} />)}
 </BaseLayout>

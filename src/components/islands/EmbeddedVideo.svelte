@@ -4,7 +4,7 @@
   // Once mounted, IntersectionObserver decides when to load+play and to
   // pause when off-screen. Progress bar at the bottom shows playback
   // position; a spinner shows while metadata/data is still arriving.
-  import Redo from './Redo.svelte';
+  import Redo from "./Redo.svelte";
 
   let {
     webm,
@@ -37,7 +37,7 @@
             if (!played) {
               loading = true;
               const p = video.play();
-              if (p && typeof p.then === 'function') {
+              if (p && typeof p.then === "function") {
                 void p.catch(() => {});
               }
               playing = true;
@@ -66,6 +66,7 @@
   const onTimeUpdate = () => {
     if (!video || !video.duration || !isFinite(video.duration)) return;
     progress = video.currentTime / video.duration;
+    console.log(progress);
   };
 </script>
 
@@ -75,8 +76,13 @@
   style="aspect-ratio: {width + 4} / {height + 4}"
 >
   {#if loading && !playing && !played}
-    <div class="absolute inset-0 grid place-items-center bg-stone-50/70" aria-hidden="true">
-      <div class="w-8 h-8 border-2 border-stone-300 border-t-stone-700 rounded-full animate-spin"></div>
+    <div
+      class="absolute inset-0 grid place-items-center bg-stone-50/70"
+      aria-hidden="true"
+    >
+      <div
+        class="w-8 h-8 border-2 border-stone-300 border-t-stone-700 rounded-full animate-spin"
+      ></div>
     </div>
   {/if}
 
@@ -117,7 +123,7 @@
     muted
     {width}
     {height}
-    preload={preload ? 'auto' : 'metadata'}
+    preload={preload ? "auto" : "metadata"}
     class="w-full h-full block"
   >
     <source type="video/webm" src={webm} />

@@ -9,6 +9,7 @@ content identical.
 **Framework: Astro 5 + Svelte 5 islands.**
 
 Why not just stay on SvelteKit?
+
 - The site is 99% static content. SvelteKit ships a runtime (and a router) for
   pages that have zero interactivity. Astro ships **zero JS by default** and
   only hydrates the components that actually need it. This is the single
@@ -18,6 +19,7 @@ Why not just stay on SvelteKit?
   is static HTML.
 
 Why Astro over alternatives:
+
 - **Astro vs Next/SolidStart/Qwik**: those all assume the page needs a JS
   framework runtime. Astro doesn't.
 - **Astro vs pure 11ty**: Astro gives us TS, components, image optimization,
@@ -28,6 +30,7 @@ Why Astro over alternatives:
   the TL;DR page and a tiny island bundle on the home page.
 
 Supporting choices:
+
 - **Svelte 5** for the video island (matches the SvelteKit version's runes
   syntax; lightest interactive framework available).
 - **Tailwind 4** via the official `@tailwindcss/vite` plugin (matches current).
@@ -64,29 +67,29 @@ Supporting choices:
 ## Step-by-step plan
 
 - [x] 1. Survey current SvelteKit implementation; identify content vs.
-       behavior; pick stack. *(done)*
-- [x] 2. Write this `PLAN.md`. *(done)*
+     behavior; pick stack. _(done)_
+- [x] 2. Write this `PLAN.md`. _(done)_
 - [x] 3. Scaffold `resume-astro` (package.json, configs, tsconfig, Tailwind,
-       Svelte integration, Playwright + Vitest).
+     Svelte integration, Playwright + Vitest).
 - [x] 4. Copy static assets (videos, audio, favicon, BGV image).
-- [x] 5. Port all 43 SVG icons from `.svelte` to Astro components. *(scripted —
-       see `scripts/port-svgs.mjs`)*
+- [x] 5. Port all 43 SVG icons from `.svelte` to Astro components. _(scripted —
+     see `scripts/port-svgs.mjs`)_
 - [x] 6. Extract all section content into a typed `src/content/sections.ts`
-       module with a tiny `[text](url)` link microformat for inline links.
+     module with a tiny `[text](url)` link microformat for inline links.
 - [x] 7. Build reusable components: `BaseLayout.astro`, `Header.astro`,
-       `IconLine.astro`, `Section.astro`, `MediaItem.astro`,
-       `Paragraph.astro`, `InlineMarkdown.astro`.
+     `IconLine.astro`, `Section.astro`, `MediaItem.astro`,
+     `Paragraph.astro`, `InlineMarkdown.astro`.
 - [x] 8. Build `EmbeddedVideo.svelte` island (IntersectionObserver, Svelte 5
-       runes).
+     runes).
 - [x] 9. Build `src/pages/index.astro` and `src/pages/tldr.astro` rendering
-       from the content module.
+     from the content module.
 - [x] 10. Unit tests (Vitest): content data shape (every section has the
-       expected fields; icon refs resolve; URLs are valid; SVG files exist).
-- [x] 3-10 *(done)*
-- [x] 11. Screenshot tests (Playwright). *(done — 10/10 passing, screenshots
-       written to `tests/screenshots/`)*
-- [x] 12. `astro check`, `astro build`, run all tests. *(done — 0 type errors,
-       builds clean, 11 unit + 10 e2e passing)*
+      expected fields; icon refs resolve; URLs are valid; SVG files exist).
+- [x] 3-10 _(done)_
+- [x] 11. Screenshot tests (Playwright). _(done — 10/10 passing, screenshots
+      written to `tests/screenshots/`)_
+- [x] 12. `astro check`, `astro build`, run all tests. _(done — 0 type errors,
+      builds clean, 11 unit + 10 e2e passing)_
 
 ## Decision log (filled in as work proceeds)
 

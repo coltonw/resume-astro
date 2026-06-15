@@ -2,7 +2,7 @@
 interface Props {
   class?: string;
 }
-const { class: className = '' } = Astro.props;
+const { class: className = "" } = Astro.props;
 ---
 
 <svg viewBox="0 0 128 128" class:list={[className]}>
