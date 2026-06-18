@@ -25,7 +25,10 @@
   let playing = $state(false);
   let played = $state(false);
   let loading = $state(false);
-  let progress = $state(0);
+  let progress = 0;
+  let projectedProgress = $state(0);
+  let lastUpdateTime = 0;
+  let transitionDuration = $state(0);
 
   $effect(() => {
     if (!container) return;
@@ -59,14 +62,27 @@
     if (!video) return;
     video.currentTime = 0;
     progress = 0;
+    projectedProgress = 0;
+    lastUpdateTime = 0;
+    transitionDuration = 0;
     playing = true;
     void video.play();
   };
 
   const onTimeUpdate = () => {
     if (!video || !video.duration || !isFinite(video.duration)) return;
+    if (video.currentTime === 0) return;
+    const now = performance.now();
+
+    const prevProgress = progress;
     progress = video.currentTime / video.duration;
-    console.log(progress);
+    const interval =
+      lastUpdateTime > 0
+        ? now - lastUpdateTime
+        : (video.currentTime * 1000) / (video.playbackRate || 1);
+    projectedProgress = Math.min(progress + (progress - prevProgress), 1);
+    transitionDuration = interval;
+    lastUpdateTime = now;
   };
 </script>
 
@@ -111,7 +127,8 @@
     ontimeupdate={onTimeUpdate}
     onended={() => {
       playing = false;
-      progress = 1;
+      projectedProgress = 1;
+      transitionDuration = 0;
     }}
     onclick={() => {
       if (!playing && video) {
@@ -136,8 +153,10 @@
     aria-hidden="true"
   >
     <div
-      class="h-full bg-stone-700 transition-[width] duration-100 ease-linear"
-      style="width: {(progress * 100).toFixed(2)}%"
+      class="h-full bg-stone-700 transition-[width] ease-linear"
+      style="width: {(projectedProgress * 100).toFixed(
+        2,
+      )}%; transition-duration: {transitionDuration}ms"
     ></div>
   </div>
 </div>
