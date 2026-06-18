@@ -6,16 +6,19 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "pnpm run build && wrangler dev",
     "check": "astro check && prettier --check .",
     "format": "prettier . --write",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "test:all": "pnpm run check && pnpm run test && pnpm run test:e2e"
+    "test:all": "pnpm run check && pnpm run test && pnpm run test:e2e",
+    "generate-types": "wrangler types",
+    "deploy": "pnpm run build && wrangler deploy"
   },
   "packageManager": "pnpm@11.6.0",
   "dependencies": {
     "@astrojs/check": "^0.9.4",
+    "@astrojs/cloudflare": "^13.7.0",
     "@astrojs/svelte": "^8.1.1",
     "@tailwindcss/vite": "^4.3.0",
     "astro": "^6.3.3",
@@ -30,6 +33,10 @@
     "prettier": "3.8.4",
     "prettier-plugin-astro": "0.14.1",
     "prettier-plugin-tailwindcss": "0.8.0",
-    "vitest": "^4.1.6"
+    "vitest": "^4.1.6",
+    "wrangler": "^4.101.0"
+  },
+  "overrides": {
+    "vite": "^7"
   }
 }
