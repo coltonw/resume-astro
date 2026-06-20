@@ -35,6 +35,7 @@ import Jimp from "../components/svgs/Jimp.astro";
 import Koa from "../components/svgs/Koa.astro";
 import LanceDB from "../components/svgs/LanceDB.astro";
 import Less from "../components/svgs/Less.astro";
+import Midjourney from "../components/svgs/Midjourney.astro";
 import Mocha from "../components/svgs/Mocha.astro";
 import MongoDB from "../components/svgs/MongoDB.astro";
 import NextJs from "../components/svgs/NextJs.astro";
@@ -94,6 +95,7 @@ const SVG_COMPONENTS: Record<string, AstroComponentFactory> = {
   Koa,
   LanceDB,
   Less,
+  Midjourney,
   Mocha,
   MongoDB,
   NextJs,

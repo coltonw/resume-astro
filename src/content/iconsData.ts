@@ -135,6 +135,12 @@ export const ICON_META = {
     extraClass: "text-blue-700",
   },
   less: { title: "Less", href: "https://lesscss.org/", svg: "Less" },
+  midjourney: {
+    title: "Midjourney",
+    href: "https://www.midjourney.com/",
+    svg: "Midjourney",
+    extraClass: "text-stone-900",
+  },
   mocha: { title: "Mocha", href: "https://mochajs.org/", svg: "Mocha" },
   mongodb: {
     title: "MongoDB",
