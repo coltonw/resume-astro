@@ -5,7 +5,7 @@
 // Anything else is rendered verbatim. One pass; no nesting; no html injection.
 const TOKEN = /\[([^\]]+)\]\(([^)]+)\)|`([^`]+)`/g;
 
-interface Props {
+export interface Props {
   text: string;
 }
 const { text } = Astro.props;
