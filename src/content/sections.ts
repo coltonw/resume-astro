@@ -292,12 +292,7 @@ export const SECTIONS: Section[] = [
     iconLine: {
       title: "Boats and Bridges, Take Two",
       date: "2024",
-      icons: [
-        "svelte",
-        "typescript",
-        "vercel",
-        "midjourney",
-      ],
+      icons: ["svelte", "typescript", "vercel", "midjourney"],
     },
     intro: [
       'After a few years away I came back to the idea, this time as a web game. I figure I can more easily actually finish if it is based on technologies I already know and love. The result is the closest thing in this museum to a "shipped" project: it is live at [boatsandbridgesgame.com](https://www.boatsandbridgesgame.com/) ([source](https://github.com/coltonw/boats-and-bridges-web)), people actually play it, and the URL still works.',
