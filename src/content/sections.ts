@@ -309,6 +309,13 @@ export const SECTIONS: Section[] = [
       'After a few years away I came back to the idea, this time as a web game. I figure I can more easily actually finish if it is based on technologies I already know and love. The result is the closest thing in this museum to a "shipped" project: it is live at [boatsandbridgesgame.com](https://www.boatsandbridgesgame.com/) ([source](https://github.com/coltonw/boats-and-bridges-web)), people actually play it, and the URL still works.',
       "The one thing I regret about it is the art. The board and card illustrations were generated with Midjourney during the brief window when image generation had just become good enough to be interesting. By the time the game actually shipped, the gamedev community had turned hard against AI art — for good reason — and the art on this game has aged with it. If I rebuilt the visuals today I would do the art myself or partner with an artist.",
     ],
+    media: {
+      kind: "video",
+      webm: "/videos/boatsandbridgesshipped.webm",
+      mp4: "/videos/boatsandbridgesshipped.mp4",
+      width: 752,
+      height: 598,
+    },
     outro: [
       "Stack is SvelteKit (with Svelte 5 runes), TypeScript, hand-written SVG for the puzzle rendering, and Vercel for hosting with their analytics built in so I can see when anybody is playing. Out of all the frontend frameworks I have used, SvelteKit has been one of my favorites. Definitely glad I learned it and I plan to use it more for future projects (even if I could never get work off of React).",
     ],
