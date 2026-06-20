@@ -185,8 +185,16 @@ export const SECTIONS: Section[] = [
       '[Star Judge](https://github.com/coltonw/star-judge) takes one set of ratings and runs them through eight different algorithms simultaneously — STAR and Majority Judgment (the two eponymous voting methods), Borda, instant runoff, Condorcet, a couple of "intolerant veto" variants that drop options with too many hard passes before tallying, and, last but not least, the Dictator. The fun part is the mock scenarios: Condorcet cycles, STAR runoff flips, and the classic Tennessee capital example where Memphis wins plurality but loses every single head-to-head, Nashville wins by Condorcet, and IRV somehow elects Knoxville. Deployed at [star-judge.willcolton.com](https://star-judge.willcolton.com/) (and at the underlying [star-judge.pages.dev](https://star-judge.pages.dev/)).',
       "The main thing I wanted to learn was Claude Code. I had already spent a lot of time with Github Copilot at work, but the buzz at the time was that Claude Code was the best-in-class AI coding tool and I wanted to try it for myself.",
     ],
+    media: {
+      kind: "image",
+      src: "/starjudge.png",
+      fallback: "/starjudge.png",
+      alt: "Star Judge Screenshot",
+      width: 748,
+      height: 571,
+    },
     outro: [
-      "The frontend is SvelteKit 5 with Runes. The API is Hono on Cloudflare Workers, talking to a D1 SQLite database. Linting is Biome. The animated bar charts are pure CSS — no chart library. I learned nothing about Hono or Runes, because the AI just did all that for me. In the end I found the project deeply unsatisfying. Since the point of side-projects is to mainly to learn, I plan to rely much less on vibe coding in the future.",
+      "The frontend is SvelteKit 5 with Runes. The API is Hono on Cloudflare Workers, talking to a D1 SQLite database. Linting is Biome. The animated bar charts are pure CSS — no chart library. I learned nothing about Hono or Runes, because the AI just did all that for me. In the end I found the project deeply unsatisfying. Since the point of side-projects is mainly to learn, I plan to rely much less on vibe coding in the future.",
     ],
   },
   {
@@ -486,6 +494,14 @@ export const SECTIONS: Section[] = [
       '[Rules RAG](https://github.com/coltonw/rules-rag) is a board-game-rules chatbot. You ask "how does the auction phase work in Brass" and it answers with a quoted passage from the actual rulebook and a page citation. But, even more than most side projects, I care less about the project itself and more about the underlying technologies I am trying to learn.',
       'The whole thing is a Rust workspace and I am trying to make it as idiomatically Rust as possible. I am using clippy::pedantic to make sure I do as much the "rusty" way as possible. Embeddings and answer generation go through [Ollama](https://ollama.com/) locally; vector storage and full-text search both live in [LanceDB](https://lancedb.com/). I built an eval set so that when I add a new technique I can validate the technique and get that satisfying "number go up" reward.',
     ],
+    media: {
+      kind: "image",
+      src: "/rulesrag.png",
+      fallback: "/rulesrag.png",
+      alt: "Rules RAG Screenshot",
+      width: 763,
+      height: 237,
+    },
     outro: [
       "This one I am writing myself, with Claude as a collaborator I can ask questions to rather than as an implementer.",
     ],
