@@ -423,27 +423,10 @@ export const SECTIONS: Section[] = [
     ],
   },
   {
-    id: "rules-rag",
-    heading: "Learning Modern AI From Scratch",
-    iconLine: {
-      title: "Rules RAG",
-      date: "2026",
-      icons: ["rust", "ollama", "lancedb"],
-    },
-    intro: [
-      "Coming off Star Judge, where I had let the AI do most of the work and walked away without really learning anything, I wanted a hands-on project to actually dig into retrieval-augmented generation.",
-      '[Rules RAG](https://github.com/coltonw/rules-rag) is a board-game-rules chatbot. You ask "how does the auction phase work in Brass" and it answers with a quoted passage from the actual rulebook and a page citation. But, even more than most side projects, I care less about the project itself and more about the underlying technologies I am trying to learn.',
-      'The whole thing is a Rust workspace and I am trying to make it as idiomatically Rust as possible. I am using clippy::pedantic to make sure I do as much the "rusty" way as possible. Embeddings and answer generation go through [Ollama](https://ollama.com/) locally; vector storage and full-text search both live in [LanceDB](https://lancedb.com/). I built an eval set so that when I add a new technique I can validate the technique and get that satisfying "number go up" reward.',
-    ],
-    outro: [
-      "This one I am writing myself, with Claude as a collaborator I can ask questions to rather than as an implementer.",
-    ],
-  },
-  {
     id: "museum-cra",
     heading: "The museum is its own exhibit",
     preIcon: [
-      "Last, but certainly not least, I want to talk about the very site you are on right now. The plan was always to implement the museum in several different UI frameworks — partly as a low-stakes way to pick up a new framework without inventing a whole new project for it, partly as an apples-to-apples comparison of how those frameworks perform on a simple two-page site. Each of the older versions has more or less become its own side project at this point; they all still live at their own subdomains.",
+      "Next, I want to talk about the very site you are on right now. The plan was always to implement the museum in several different UI frameworks — partly as a low-stakes way to pick up a new framework without inventing a whole new project for it, partly as an apples-to-apples comparison of how those frameworks perform on a simple two-page site. Each of the older versions has more or less become its own side project at this point; they all still live at their own subdomains.",
     ],
     iconLine: {
       title: "Create React App",
@@ -484,10 +467,27 @@ export const SECTIONS: Section[] = [
       icons: ["astro", "cloudflare", "tailwind"],
     },
     intro: [
-      "This implementation. [Astro](https://astro.build/) with a single Svelte 5 island for the lazy-loading video player; everything else is plain static HTML, and the TL;DR page ships literally zero JavaScript. Tailwind for styling, a typed data module for the section content so adding a new project is a content edit rather than a new file, and a Vitest + Playwright test suite that also runs in CI. Deploys as static files on Cloudflare Pages.",
+      "This implementation, updated with the latest projects and content. [Astro](https://astro.build/) with a single Svelte 5 island for the lazy-loading video player; everything else is plain static HTML, and the TL;DR page ships literally zero JavaScript. Tailwind for styling, a typed data module for the section content so adding a new project is a content edit rather than a new file, and a Vitest + Playwright test suite that also runs in CI. Deploys as static files on Cloudflare Pages.",
     ],
     outro: [
-      "Eventually I want to set up a real comparison across the implementations — bundle sizes, Lighthouse scores, time-to-interactive on identical content. For now the museum is a casual cross-section of where the JavaScript ecosystem has been over the last several years, with the bonus that I get to learn a new framework every couple of years without having to come up with what to put in it.",
+      "The idea was to eventually set up a real comparison across the implementations — bundle sizes, Lighthouse scores, time-to-interactive on identical content. Instead the museum is a casual cross-section of where the JavaScript ecosystem has been over the last several years, with the bonus that I get to learn a new framework every couple of years without having to come up with what to put in it.",
+    ],
+  },
+  {
+    id: "rules-rag",
+    heading: "Learning Modern AI From Scratch",
+    iconLine: {
+      title: "Rules RAG",
+      date: "2026",
+      icons: ["rust", "ollama", "lancedb"],
+    },
+    intro: [
+      "Coming off Star Judge, where I had let the AI do most of the work and walked away without really learning anything, I wanted a hands-on project to actually dig into retrieval-augmented generation.",
+      '[Rules RAG](https://github.com/coltonw/rules-rag) is a board-game-rules chatbot. You ask "how does the auction phase work in Brass" and it answers with a quoted passage from the actual rulebook and a page citation. But, even more than most side projects, I care less about the project itself and more about the underlying technologies I am trying to learn.',
+      'The whole thing is a Rust workspace and I am trying to make it as idiomatically Rust as possible. I am using clippy::pedantic to make sure I do as much the "rusty" way as possible. Embeddings and answer generation go through [Ollama](https://ollama.com/) locally; vector storage and full-text search both live in [LanceDB](https://lancedb.com/). I built an eval set so that when I add a new technique I can validate the technique and get that satisfying "number go up" reward.',
+    ],
+    outro: [
+      "This one I am writing myself, with Claude as a collaborator I can ask questions to rather than as an implementer.",
     ],
   },
 ];
